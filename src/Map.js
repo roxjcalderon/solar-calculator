@@ -1,6 +1,7 @@
 import GoogleMap from 'google-map-react';
 import React, { useState } from 'react';
 import { drawingTool } from './googleMapComponents.js'
+import { calculateNominalPower } from './nominalPowerCalculation.js'
 
 function Map(api_keys) {
   const defaultProps = {
@@ -28,7 +29,6 @@ function Map(api_keys) {
       const area = googleMaps.geometry.spherical.computeArea(polygon.getPath());
       setArea(area);
     });
-
   }
 
   return (
@@ -43,7 +43,8 @@ function Map(api_keys) {
       </GoogleMap>
       Area Selected: {area} sq meters
       <br/>
-      {power && `Calculated Nominal Output:${power}`}
+
+      { calculateNominalPower(area) }
     </div>
   );
 }
