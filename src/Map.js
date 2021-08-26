@@ -1,5 +1,6 @@
 import GoogleMap from 'google-map-react';
 import React, { useState } from 'react';
+import { drawingTool } from './googleMapComponents.js'
 
 function Map(api_keys) {
   const defaultProps = {
@@ -11,14 +12,26 @@ function Map(api_keys) {
   };
 
   const bootstrapURLKeys={
-    key: api_keys.google_api_key
+    key: api_keys.google_api_key,
+    libraries: ['drawing'].join(','),
   }
 
+
+  const [area, setArea] = useState(0);
+  const [power, setPower] = useState("");
+
   const handleGoogleMapApi = (map, googleMaps) => {
+    const drawingManager = drawingTool(map, googleMaps);
+
+    // Resource Used: // https://developers.google.com/maps/documentation/javascript/reference/geometry#spherical
+    googleMaps.event.addListener(drawingManager, 'polygoncomplete', function(polygon) {
+      const area = googleMaps.geometry.spherical.computeArea(polygon.getPath());
+      setArea(area);
+    });
+
   }
 
   return (
-
     <div style={{ height: '75vh', width: '100%' }}>
       <GoogleMap
         bootstrapURLKeys={bootstrapURLKeys}
@@ -28,6 +41,9 @@ function Map(api_keys) {
         onGoogleApiLoaded={({ map, maps }) => handleGoogleMapApi(map, maps)}
       >
       </GoogleMap>
+      Area Selected: {area} sq meters
+      <br/>
+      {power && `Calculated Nominal Output:${power}`}
     </div>
   );
 }
