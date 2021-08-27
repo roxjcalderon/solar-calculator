@@ -4,7 +4,9 @@ This Solar Calculator app is a simple React app used to calculate the possible n
 
 Google Maps is leveraged to allow search functionality and map selection.
 
-Create an .env file with a variable of REACT_APP_GOOGLE_API_KEY to run. REACT_APP_GOOGLE_API_KEY should be a valid api key that works with Google maps and has the Maps Javascript API and Places API enabled. 
+Create an .env file with a variable of REACT_APP_GOOGLE_API_KEY to run. REACT_APP_GOOGLE_API_KEY should be a valid api key that works with Google maps and has the Maps Javascript API and Places API enabled.
+
+Please start by running `yarn install`
 ## Available Scripts
 
 In the project directory, you can run:
