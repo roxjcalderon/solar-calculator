@@ -1,3 +1,5 @@
+// Input, selected area
+// Output String either stating error or solar panel output in kW from WP
 export const calculateNominalPower = (area) => {
   // https://www.mitsubishielectricsolar.com/images/uploads/documents/specs/MLU_spec_sheet_250W_255W.pdf
   // The assumption made here is that solar panels are aligned with no space in between for the entire area,

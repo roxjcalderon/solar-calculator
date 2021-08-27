@@ -2,7 +2,6 @@ import GoogleMapReact from 'google-map-react';
 import React, { useState } from 'react';
 import { drawingTool } from './googleMapComponents.js'
 import { calculateNominalPower } from './nominalPowerCalculation.js'
-import SearchBox from './searchBox.js'
 
 function Map(apiKeys) {
   const defaultProps = {

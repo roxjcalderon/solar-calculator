@@ -1,3 +1,5 @@
+// Input: map, maps component from Google API
+// Return: Google's drawing manager
 export const drawingTool = (map, googleMaps) => {
   //Resources:
   // https://github.com/google-map-react/google-map-react/issues/102
