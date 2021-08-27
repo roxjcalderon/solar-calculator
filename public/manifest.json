@@ -1,0 +1,8 @@
+{
+  "short_name": "Solar Calulator",
+  "name": "Nominal Power Solar Calulator",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
