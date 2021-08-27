@@ -5,6 +5,6 @@ import Map from '../Map';
 
 test('verify nominal power message is displayed', () => {
   render(<Map />);
-  const nominalPower = screen.getByText(/Nominal Power for Area Selected/i);
+  const nominalPower = screen.getByText(/Select an area on the map above to begin/i);
   expect(nominalPower).toBeInTheDocument();
 });

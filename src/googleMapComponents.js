@@ -16,3 +16,31 @@ export const drawingTool = (map, googleMaps) => {
   drawingManager.setMap(map);
   return drawingManager;
 };
+
+// Input: map, maps component from Google API
+// Objective: Set up the search component of google maps.
+export const searchComponent = (map, googleMaps) => {
+  // https://developers.google.com/maps/documentation/javascript/examples/places-searchbox#maps_places_searchbox-javascript
+  // the following code is very closely adapted to the search box functionality above.
+  const input = document.getElementById("pac-input");
+  const searchBox = new googleMaps.places.SearchBox(input);
+  map.controls[googleMaps.ControlPosition.TOP_LEFT].push(input);
+
+  map.addListener("bounds_changed", () => {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  searchBox.addListener("places_changed", () => {
+    const places = searchBox.getPlaces();
+    const bounds = new googleMaps.LatLngBounds();
+    places.forEach((place) => {
+      if (place.geometry.viewport) {
+      // Only geocodes have viewport.
+      bounds.union(place.geometry.viewport);
+    } else {
+      bounds.extend(place.geometry.location);
+    }
+    });
+   map.fitBounds(bounds);
+  });
+};
