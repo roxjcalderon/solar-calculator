@@ -4,12 +4,15 @@ export const calculateNominalPower = (area) => {
   // rounded down to eliminate any partial panels. Then I am calculating the total wP for all solar panels
   // using nominal power
 
-  const solar_panel_size_in_m2 = 1.625 * 1.019
-  const solar_panel_wp = 255
+  const solar_panel_size_in_m2 = 1.625 * 1.019;
+  const solar_panel_wp = 255;
 
-  const panels = Math.floor(area / solar_panel_size_in_m2)
+  const panels = Math.floor(area / solar_panel_size_in_m2);
+  const solar_panel_kw = (solar_panel_wp * panels)/1000;
+  if (solar_panel_kw !== undefined && !isNaN(solar_panel_kw) ){
+    return `Nominal Power for Area Selected: ${solar_panel_kw} kw`;
+  }else{
+    return `We could not calculate your nominal power at this time`;
+  }
 
-  return (
-    <p> Nominal Power for Area Selected: {(solar_panel_wp * panels)/1000} kW</p>
-  )
 }
